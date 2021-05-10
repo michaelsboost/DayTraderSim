@@ -35,6 +35,9 @@ Want to contribute? Great!
 
 You can submit a pull request or simply share the project :)
 
+*As of Monday, May 10th, 2021 Crypto Paper Trader is no longer an active project.
+All updates as of that date and on are solely contributor based implementations.*
+
 Of course, Crypto Paper Trader is free and open source, so you can always fork the project and have fun :)
 
 [![ko-fi](https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0)](https://ko-fi.com/michaelsboost)
