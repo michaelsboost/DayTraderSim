@@ -1,0 +1,41 @@
+{
+  "name": "crypto-paper-trader",
+  "version": "0.0.1",
+  "description": "Trade crypto with out risking any money!",
+  "main": "index.js",
+  "scripts": {
+    "buildcss": "sass src/ticker.scss css/ticker.css",
+    "buildjs": "babel --presets es2015 src -d js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelsboost/Crypto-Paper-Trader.git"
+  },
+  "keywords": [
+    "crypto",
+    "paper",
+    "trade",
+    "trader",
+    "trading",
+    "money",
+    "finance",
+    "html",
+    "css",
+    "javascript",
+    "babel",
+    "es6"
+  ],
+  "author": "Michael Schwartz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelsboost/Crypto-Paper-Trader/issues"
+  },
+  "homepage": "https://github.com/michaelsboost/Crypto-Paper-Trader#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "dependencies": {
+    "sass": "^1.32.12"
+  }
+}

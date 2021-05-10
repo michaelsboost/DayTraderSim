@@ -1,0 +1,162 @@
+/* resets */
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #1e2b34;
+}
+body {
+  font-size: 12px;
+  line-height: 17px;
+  font-family: 'segoe ui', arial, sans-serif;
+  color: #fff;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 1px;
+  height: 0;
+  background: transparent;
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: #007ACC;
+  border: 0;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1C97EA;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #0765a5;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* splitter */
+#mainSplitter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  border: 0;
+}
+.fill-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.fill-container h3 {
+  font-family: 'Krub';
+  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+  padding: 8px 0 6px 8px;
+  margin: 0;
+}
+/*
+table, tbody, tr, td {
+  border: 1px solid #fff;
+}
+*/
+.fill-container table tbody {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: calc(100% - 8px);
+  overflow: auto;
+  padding: 8px 0 6px 8px;
+}
+.fill-container table tbody tr {
+  display: inline-table;
+  width: 100%;
+}
+.fill-container table tbody tr td {
+  width: 50px;
+}
+
+/* center vertically and horizontally */
+.flex {
+  display: flex;
+  width: 100%;
+  height: 50%;
+  text-align: center;
+}
+.flexcontents {
+  display: contents;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+/* cash/balance */
+.cash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: #fff;
+}
+
+/* order entry */
+.orderentry {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.orderentry button {
+  width: calc(50% - 2px);
+  padding: 15pt 0 15pt 0;
+  cursor: pointer;
+  display: block;
+  background: transparent;
+  color: #9ea1a4;
+  border: 0;
+  text-transform: capitalize;
+}
+.orderentry button[disabled] {
+  color: #4e4f50!important;
+}
+.orderentry input {
+  width: calc(50% - 2px);
+  padding: 15pt 0 15pt 0;
+  display: block;
+  background: transparent;
+  color: #9ea1a4;
+  border: 0;
+  text-align: center;
+}
+.krub {
+  font-family: 'Krub';
+  font-weight: 400;
+  font-size: 36px;
+  font-style: normal;
+  fill: #9ea1a4;
+  stroke: none;
+}
+
+/* misc */
+.block {
+  display: block;
+}
+.pointer {
+  cursor: pointer;
+}

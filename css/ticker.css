@@ -1,0 +1,176 @@
+/* resets */
+span, span::after, span::before {
+  box-sizing: initial;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
+#ticker {
+  -webkit-user-select: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.ticker {
+  position: relative;
+  background-color: #1e2b34;
+  background-size: 100px 99px;
+  background-position: 0 0, 50px 50px;
+  height: 100%;
+  width: 100%;
+  color: white;
+  padding: 30px 100px 45px 10px;
+  display: table;
+  table-layout: fixed;
+  box-sizing: border-box;
+}
+.ticker ol {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: table-row;
+}
+.ticker li {
+  list-style-type: none;
+  display: table-cell;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.ticker li .candle {
+  position: absolute;
+  width: 90%;
+  border: solid 1px #eb6e40;
+  background-color: #ff7541;
+  min-height: 1px;
+  cursor: pointer;
+}
+.ticker li .candle:hover {
+  border: solid 1px #ccc !important;
+}
+.ticker li .min-max {
+  width: 1px;
+  position: absolute;
+  left: 45%;
+  background-color: #eb6e40;
+}
+.ticker li.up .min-max,
+.ticker li.up .candle {
+  background: none;
+  background-color: #569253;
+  border-color: #569253;
+}
+.ticker li.up .candle {
+  background-color: #21313b;
+}
+.ticker .max,
+.ticker .min {
+  width: 100px;
+  right: -25px;
+  position: absolute;
+  text-align: left;
+  font-size: 11px;
+  font-family: Courier;
+  text-decoration: underline;
+  color: #999;
+  display: none;
+}
+.ticker .max {
+  top: 24px;
+}
+.ticker .min {
+  bottom: 40px;
+}
+
+.labels {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: table;
+}
+.labels .label {
+  position: absolute;
+  width: 100%;
+}
+.labels .label .line {
+  position: absolute;
+  border-bottom: rgba(255, 255, 255, 0.09) 1px dashed;
+  width: 100%;
+  height: 2px;
+  top: -3px;
+}
+.labels .label span {
+  position: absolute;
+  right: 30px;
+  top: -15px;
+  font-size: 11px;
+  color: #999;
+  font-family: Courier;
+}
+.labels .price {
+  position: absolute;
+  z-index: 2;
+  right: 21px;
+}
+.labels .price span {
+  position: relative;
+  top: -13px;
+  text-decoration: underline;
+  display: block;
+  color: black;
+  background-color: #aaa;
+  font-size: 11px;
+  padding: 5px 9px 5px 9px;
+  height: 16px;
+  font-family: Courier;
+  line-height: 16px;
+  border-radius: 4px;
+}
+.labels .price span:before {
+  position: absolute;
+  display: block;
+  content: "";
+  left: -9px;
+  top: 11px;
+  width: 11px;
+  height: 4px;
+  background-color: #aaa;
+}
+
+.controls {
+  position: absolute;
+  left: 10px;
+  top: 11px;
+}
+.controls select {
+  display: inline-block;
+  -webkit-appearance: none;
+  border: solid 1px white;
+  padding: 3px 8px;
+  cursor: pointer;
+  margin: 0px;
+  opacity: 0.7;
+  font-size: 10px;
+  background-color: #141414;
+  color: #ccc;
+  border-radius: 0;
+  text-align-last: center;
+  font-size: 11px;
+}
+.controls select:hover {
+  color: white;
+  border-color: white;
+}
+.controls .price {
+  color: #c8c8c8;
+  font-family: Courier;
+  font-size: 14px;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,158 @@
+<!-- 
+  Version: 0.0.1
+  Crypto Paper Trader, copyright (c) by Michael Schwartz
+  Distributed under the MIT license: https://github.com/michaelsboost/Crypto-Paper-Trader/blob/gh-pages/LICENSE
+  This is Crypto Paper Trader (https://michaelsboost.github.io/Crypto-Paper-Trader), Trade crypto with out risking any money!
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crypto Paper Trader</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="description" content="Trade crypto with out risking any money!">
+    <meta name="author" content="Michael Schwartz">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@200&display=swap" rel="stylesheet">
+    <link href="css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="css/ticker.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="libraries/metroui/metro.min.css">
+    <link rel="stylesheet" href="libraries/metroui/metrodark.css">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div data-role="splitter" class="h-100" data-gutter-size="8" data-split-mode="horizontal">
+      <!-- left side -->
+      <div data-role="splitter" data-split-mode="vertical" data-gutter-size="8">
+        <div class="fill-container">
+          <h3>Balance</h3>
+          <button id="cash" class="krub cash">$1,000</button>
+        </div>
+        <div class="fill-container">
+          <h3>Order History</h3>
+                  
+          <table>
+            <tbody data-column="orderhistory">
+              <tr>
+                <td>Time</td>
+                <td>Symbol</td>
+                <td>Price</td>
+                <td>Order Type</td>
+              </tr>
+              <tr data-output="orderhistory"></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fill-container">
+          <h3>Positions</h3>
+          
+          <table>
+            <tbody data-column="position">
+              <tr>
+                <td>Symbol</td>
+                <td>Price</td>
+                <td>Open P&L</td>
+                <td>Closed P&L</td>
+              </tr>
+              <tr data-output="position"></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- right side -->
+      <div data-role="splitter" class="h-100" data-gutter-size="8" data-split-mode="vertical">
+        <div class="fill-container">
+          <div id="ticker">
+            <div class="ticker">
+              <div class="labels">
+                <div class="label" v-for="label in labels" v-bind:style="{ 'top': getCandleOffset(label) }">
+                  <div class="line"></div>
+                  <span>{{label | price(product)}}</span>
+                </div>
+                <div class="price" v-bind:style="{ 'top': getCandleOffset(current.close) }">
+                  <span>{{current.close | price(product) }}</span>
+                </div>
+              </div>
+              <ol>
+                <li v-for="candle in displayCandles" v-bind:class="{ 'up': candle.open <= candle.close }">
+                  <div class="min-max" v-bind:style="{ 
+                    'height': getCandleHeight(candle.min, candle.max), 
+                    'top': getCandleOffset(candle.min, candle.max) }">
+                  </div>
+                  <div class="candle" v-bind:style="{ 
+                      'height': getCandleHeight(candle.open, candle.close), 
+                      'top': getCandleOffset(candle.open, candle.close) }">
+                  </div>
+                </li>
+                <li v-bind:class="{ 'up': current.open <= current.close }">
+                  <div class="min-max" v-bind:style="{ 
+                      'height': getCandleHeight(current.min, current.max), 
+                      'top': getCandleOffset(current.min, current.max) }">
+                  </div>
+                  <div class="candle current" v-bind:data-open="open" v-bind:style="{
+                        'height': getCandleHeight(current.open, current.close), 
+                        'top': getCandleOffset(current.open, current.close) }">
+                  </div>
+                </li>
+              </ol>
+              <div class="max">${{displayMax | price(product) }}</div>
+              <div class="min">${{displayMin | price(product) }}</div>
+              <div class="controls">
+                <select v-model="product">
+                  <option>BTC-USD</option>
+                  <option>ETH-USD</option>
+                  <option>LTC-USD</option>
+                  <option>ADA-USD</option>
+                </select>
+                <select v-model="candleCount">
+                  <option value="20">20 candles</option>
+                  <option value="40">40 candles</option>
+                  <option value="80">80 candles</option>
+                </select>
+                <select v-model="interval">
+                  <option value="1000">1s</option>
+                  <option value="5000">5s</option>
+                  <option value="10000">10s</option>
+                  <option value="30000">30s</option>
+                  <option value="60000">1min</option>
+                  <option value="300000">5min</option>
+                  <option value="900000">15min</option>
+                  <option value="3600000">1hr</option>
+                  <option value="21600000">6hr</option>
+                  <option value="86400000">1day</option>
+                </select>
+                <span class="price">Price: <u>{{current.close | price(product) }}</u></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fill-container">
+          <div class="orderentry">
+            <div class="flex">
+              <div class="flexcontents">
+                <button id="marketorder" class="krub">market</button>
+                <input id="priceorder" class="krub" type="number" placeholder="343.75" min="0">
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flexcontents">
+                <button id="sell" class="krub">sell</button>
+                <button id="buy"  class="krub">buy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="libraries/vue/vue.min.js"></script>
+    <script src="libraries/jquery/jquery.js"></script>
+    <script src="libraries/polyfill/babel-polyfill.js"></script>
+    <script src="libraries/metroui/metro.min.js"></script>
+    <script src="js/ticker.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
