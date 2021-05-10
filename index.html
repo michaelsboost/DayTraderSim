@@ -27,7 +27,7 @@
     <link href="css/ticker.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
 
-    <meta property="og:url"         content="https://michaelsboost.com/Crypto-Paper-Trader" />
+    <meta property="og:url"         content="https://michaelsboost.com/crypto" />
     <meta property="og:type"        content="website" />
     <meta property="og:title"       content="Crypto Paper Trader: Day trade crypto with out risking any money!" />
     <meta property="og:description" content="Day trade crypto with out risking any money!" />
@@ -151,6 +151,12 @@
                       <option value="3600000">1hr</option>
                       <option value="21600000">6hr</option>
                       <option value="86400000">1day</option>
+                    </select>
+                    <select id="leverage">
+                      <option value="1">none</option>
+                      <option value="2">2x</option>
+                      <option value="4">4x</option>
+                      <option value="6">6x</option>
                     </select>
                     <span class="price">Price: <u>{{current.close | price(product) }}</u></span>
                   </div>

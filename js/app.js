@@ -8,11 +8,12 @@
 // variables
 var timer, timer1, timer2, shorting;
 var now, month, currentDate, year, activeDate;
-var balanceTxt, cashIn, closedPrice, currentBalance, gainorLoss, priceTimes, finalPrice;
+var balanceTxt, cashIn, closedPrice, currentBalance, gainorLoss, priceTimes, finalPrice, leveraged;
 var priceOrder  = document.getElementById("priceorder")
 var buyBtn      = document.getElementById("buy")
 var sellBtn     = document.getElementById("sell")
 var cash        = document.getElementById("cash")
+var leverageElm = document.getElementById("leverage")
 var activeOrder = false
 
 // buy button
@@ -113,6 +114,7 @@ sell.onclick = function() {
       this.disabled = true
       watchPL()
       $(".controls select")[0].disabled = true
+      leverageElm.disabled = true
       console.log("start watching")
     }
   } else {
@@ -141,8 +143,10 @@ function buildPL() {
   // detect profit loss
   if (shorting === true) {
     gainorLoss = parseFloat(parseFloat(cashIn) - parseFloat(priceOrder.value)).toFixed(2)
+    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val()))
   } else {
     gainorLoss = parseFloat(parseFloat(priceOrder.value) - parseFloat(cashIn)).toFixed(2)
+    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val()))
   }
 
   // active position
@@ -180,6 +184,7 @@ function stopPL() {
   cash.textContent = "$" + parseFloat(finalPrice).toLocaleString()
   balanceTxt = cash.textContent
   $(".controls select")[0].disabled = false
+  leverageElm.disabled = false
   
   $("[data-trade=symbol]").text(" ")
   $("[data-trade=price]").text(" ")
