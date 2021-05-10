@@ -108,7 +108,7 @@ sell.onclick = function() {
       shorting = true
       console.log("shorting true")
       cashIn = parseFloat(priceOrder.value).toFixed(2)
-      currentBalance = parseFloat(balanceTxt).toFixed(2);
+      currentBalance = parseFloat(balanceTxt).toFixed(2)
       
       $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $(".controls select option:selected").val() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
       this.disabled = true
@@ -143,10 +143,10 @@ function buildPL() {
   // detect profit loss
   if (shorting === true) {
     gainorLoss = parseFloat(parseFloat(cashIn) - parseFloat(priceOrder.value)).toFixed(2)
-    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val()))
+    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val())).toFixed(2)
   } else {
     gainorLoss = parseFloat(parseFloat(priceOrder.value) - parseFloat(cashIn)).toFixed(2)
-    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val()))
+    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val())).toFixed(2)
   }
 
   // active position
