@@ -3,6 +3,8 @@ Crypto Paper Trader
 
 Day trade crypto with out risking any money! 
 
+Try it now! [https://michaelsboost.com/Crypto-Paper-Trader/](https://michaelsboost.github.io/Crypto-Paper-Trader/)
+
 ![](https://raw.githubusercontent.com/michaelsboost/Crypto-Paper-Trader/gh-pages/screenshot.png)
 
 Version
