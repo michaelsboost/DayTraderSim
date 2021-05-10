@@ -1,7 +1,7 @@
 Crypto Paper Trader
 ===================
 
-Trade crypto with out risking any money! 
+Day trade crypto with out risking any money! 
 
 Version
 -------------
