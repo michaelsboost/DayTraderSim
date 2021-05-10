@@ -173,12 +173,12 @@ function stopPL() {
   } else {
     // finally add to balance
     priceTimes = Math.floor(parseFloat(currentBalance) / closedPrice)
-    closedPrice = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes))
+    closedPrice = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes)).toFixed(2)
     finalPrice = parseFloat(parseFloat(currentBalance) + parseFloat(closedPrice)).toFixed(2)
   }
   clearTimeout(timer2)
   
-  gainorLoss = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes))
+  gainorLoss = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes)).toFixed(2)
   $("[data-output=position]").prepend('<tr><td>'+ $("[data-trade=symbol]").text() +'</td><td>'+ $("[data-trade=price]").text() +'</td><td>0.00</td><td>'+ gainorLoss +'</td></tr>').show()
   $("[data-clone=position]").hide()
   cash.textContent = "$" + parseFloat(finalPrice).toLocaleString()
