@@ -16,6 +16,27 @@ var cash        = document.getElementById("cash")
 var leverageElm = document.getElementById("leverage")
 var activeOrder = false
 
+// balance button
+cash.onclick = function() {
+  var msg1 = "<br>All your progress will be lost!<br><br>",
+      msg2 = "Do you wish to continue?";
+  
+  Swal.fire({
+    title: "Warning! Clears your history!!",
+    input: 'number',
+    inputLabel: msg1 + msg2,
+    inputValue: '1000.00',
+    showCancelButton: true,
+    inputValidator: (value) => {
+      if (!value) {
+        return 'You need to write something!'
+      } else {
+        cash.textContent = '$' + parseFloat(value).toLocaleString() + '.00'
+      }
+    }
+  })
+}
+
 // buy button
 buy.onclick = function() {
   now = new Date()

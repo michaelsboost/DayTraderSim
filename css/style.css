@@ -109,6 +109,7 @@ table, tbody, tr, td {
 
 /* cash/balance */
 .cash {
+  cursor: pointer;
   position: absolute;
   top: 0;
   left: 0;
