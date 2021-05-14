@@ -66,7 +66,7 @@ buy.onclick = function() {
         watchPL()
       }
       
-      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $(".controls select option:selected").val() +'</td><td>'+ priceOrder.value +'</td><td>Buy</td></tr>')
+      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Buy</td></tr>')
       this.disabled = true
     } else {
       // grab current balance
@@ -74,7 +74,7 @@ buy.onclick = function() {
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
       // active (short selling)
-      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $(".controls select option:selected").val() +'</td><td>'+ priceOrder.value +'</td><td>Buy</td></tr>')
+      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Buy</td></tr>')
       this.disabled = false
       sell.disabled = false
       shorting = false
@@ -105,7 +105,7 @@ sell.onclick = function() {
       balanceTxt = cash.textContent;
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
-      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $(".controls select option:selected").val() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
+      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
       buy.disabled = false
       this.disabled = false
       shorting = false
@@ -131,10 +131,9 @@ sell.onclick = function() {
       cashIn = parseFloat(priceOrder.value).toFixed(2)
       currentBalance = parseFloat(balanceTxt).toFixed(2)
       
-      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $(".controls select option:selected").val() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
+      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
       this.disabled = true
       watchPL()
-      $(".controls select")[0].disabled = true
       leverageElm.disabled = true
       console.log("start watching")
     }
@@ -143,10 +142,49 @@ sell.onclick = function() {
   }
 }
 
+// ticker chart
+new TradingView.widget({
+  "width": "100%",
+  "height": window.innerHeight,
+  "symbol": "BINANCE:" + $('#coin').text(),
+  "interval": "1",
+  "timezone": "Etc/UTC",
+  "theme": "dark",
+  "style": "1",
+  "locale": "en",
+  "toolbar_bg": "#f1f3f6",
+  "enable_publishing": false,
+  "hide_side_toolbar": false,
+  "allow_symbol_change": false,
+  "hotlist": true,
+  "calendar": true,
+  "details": true,
+  "studies": [
+    "BB@tv-basicstudies",
+    "Volume@tv-basicstudies",
+    "VWAP@tv-basicstudies"
+  ],
+  "news": [
+    "headlines"
+  ],
+  "container_id": "tradingview_0b60e"
+})
+watchTicker()
+
 // watch the ticker price
 function buildTicker() {
-  var str = $(".price span").text()
-  priceOrder.value = str.substr(1, str.length)
+  var burl = 'https://api.binance.com/api/v3/ticker/price?symbol='
+  var symbol = $('#coin').text()
+  var url = burl + symbol
+  var ourRequest = new XMLHttpRequest()
+
+  ourRequest.open('GET', url, true)
+  ourRequest.onload = function() {
+    var str = ourRequest.responseText
+    var strOBJ = JSON.parse(str)
+    priceorder.value = parseFloat(strOBJ.price)
+  }
+  ourRequest.send()
 }
 function watchTicker() {
   clearTimeout(timer1)
@@ -157,7 +195,6 @@ function stopTicker() {
   clearTimeout(timer1)
   return false
 }
-watchTicker()
 
 // watch the p&l
 function buildPL() {
@@ -172,7 +209,7 @@ function buildPL() {
 
   // active position
   closedPrice = priceOrder.value
-  $("[data-trade=symbol]").text($(".controls select option:selected").val())
+  $("[data-trade=symbol]").text($('#coin').text())
   $("[data-trade=price]").text(closedPrice)
   $("[data-pl=open]").text(gainorLoss)
 }
@@ -204,7 +241,6 @@ function stopPL() {
   $("[data-clone=position]").hide()
   cash.textContent = "$" + parseFloat(finalPrice).toLocaleString()
   balanceTxt = cash.textContent
-  $(".controls select")[0].disabled = false
   leverageElm.disabled = false
   
   $("[data-trade=symbol]").text(" ")

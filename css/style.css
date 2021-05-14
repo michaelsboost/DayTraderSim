@@ -9,7 +9,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  background-color: #1e2b34;
+  background-color: #131722;
 }
 body {
   font-size: 12px;
@@ -94,20 +94,36 @@ table, tbody, tr, td {
 }
 
 /* center vertically and horizontally */
-.flex {
-  display: flex;
+.table {
+  display: table;
   width: 100%;
   height: 50%;
-  text-align: center;
 }
-.flexcontents {
-  display: contents;
-  width: 100%;
-  height: 100%;
+.cell {
+  display: table-cell;
   vertical-align: middle;
+  width: 50%;
+  height: 50%;
+}
+.cell select,
+.cell input,
+.cell button {
+  margin: auto;
+}
+
+/* TradingView widget */
+#tradingview_0b60e > div,
+#tradingview_0b60e > div > div {
+  width: 100%!important;
+  height: 100%!important;
 }
 
 /* cash/balance */
+.leverage {
+  color: #a1a4ad;
+  background-color: #131722;
+  border: 0;
+}
 .cash {
   cursor: pointer;
   position: absolute;
@@ -130,41 +146,64 @@ table, tbody, tr, td {
   right: 0;
   bottom: 0;
 }
-.orderentry button {
-  width: calc(50% - 2px);
-  padding: 15pt 0 15pt 0;
+.orderentry button,
+.orderentry select {
   cursor: pointer;
   display: block;
   background: transparent;
-  color: #9ea1a4;
+  color: #a1a4ad;
   border: 0;
   text-transform: capitalize;
+}
+.orderentry select option {
+  text-align: center;
 }
 .orderentry button[disabled] {
   color: #4e4f50!important;
 }
 .orderentry input {
-  width: calc(50% - 2px);
+  width: 100%;
   padding: 15pt 0 15pt 0;
   display: block;
   background: transparent;
-  color: #9ea1a4;
+  color: #a1a4ad;
   border: 0;
   text-align: center;
 }
 .krub {
+  text-align: center;
   font-family: 'Krub';
   font-weight: 400;
   font-size: 36px;
   font-style: normal;
-  fill: #9ea1a4;
+  color: #a1a4ad;
+  fill: #a1a4ad;
   stroke: none;
+}
+#buy, #sell {
+  width: 100%;
+  height: 100%;
 }
 
 /* misc */
+.fill {
+  width: 100%;
+}
+.ib {
+  display: inline-block;
+}
 .block {
   display: block;
 }
 .pointer {
   cursor: pointer;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.tr {
+  text-align: right;
 }

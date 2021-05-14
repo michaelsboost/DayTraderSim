@@ -74,9 +74,9 @@
     font-family: 'segoe ui', arial, sans-serif;
     color: inherit;
 }
-.jqx-widget-content-metrodark{font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; border-color: #35353A; color: #ffffff; background-color: #1e2b34;}
-.jqx-widget-header-metrodark{font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; color: #ffffff; border-color:#35353A; background-color:#3E3E42;}
-.jqx-fill-state-normal-metrodark{font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; border-color: #35353A; color: #ffffff; background: #3E3E42;}
+.jqx-widget-content-metrodark{font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; border-color: #35353A; color: #ffffff; background-color: #131722;}
+.jqx-widget-header-metrodark{font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; color: #ffffff; border-color:#35353A; background-color:#2a2e39;}
+.jqx-fill-state-normal-metrodark{font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; border-color: #35353A; color: #ffffff; background: #2a2e39;}
 .jqx-fill-state-hover-metrodark{font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; border-color:#1C97EA; color: #fff; background-color:#1C97EA;
 
 }
@@ -90,18 +90,18 @@
 .jqx-input-metrodark {
     border-color: #35353A;
 }
-.jqx-scrollbar-state-normal-metrodark, .jqx-grid-bottomright-metrodark, .jqx-panel-bottomright-metrodark, .jqx-listbox-bottomright-metrodark{background-color:#3E3E42;}
+.jqx-scrollbar-state-normal-metrodark, .jqx-grid-bottomright-metrodark, .jqx-panel-bottomright-metrodark, .jqx-listbox-bottomright-metrodark{background-color:#2a2e39;}
 .jqx-widget-metrodark .jqx-grid-column-header-metrodark, .jqx-grid-cell-metrodark, .jqx-widget-metrodark .jqx-grid-cell-metrodark, .jqx-widget-metrodark .jqx-grid-group-cell-metrodark, .jqx-grid-group-cell-metrodark{font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; border-color: #1C1C1E; background-color: #2A2A2C; color: #fff;}
 .jqx-tabs-title-selected-bottom-metrodark, .jqx-tabs-selection-tracker-bottom-metrodark, .jqx-tabs-title-selected-top-metrodark, .jqx-tabs-selection-tracker-top-metrodark{color: #ffffff; border-color:#35353A; border-bottom:1px solid #252526; background:#007ACC}
-.jqx-widget-metrodark .jqx-grid-cell-alt-metrodark, .jqx-widget-metrodark .jqx-grid-cell-sort-metrodark, .jqx-widget-metrodark .jqx-grid-cell-pinned-metrodark, .jqx-widget-metrodark .jqx-grid-cell-filter-metrodark, .jqx-grid-cell-sort-alt-metrodark, .jqx-grid-cell-filter-alt-metrodark, .jqx-grid-cell-pinned-metrodark, .jqx-grid-cell-alt-metrodark, .jqx-grid-cell-sort-metrodark{ background-color:#3E3E42; color: #fff;}
-.jqx-menu-vertical-metrodark{background: #3E3E42; border-color: #3E3E42;}
+.jqx-widget-metrodark .jqx-grid-cell-alt-metrodark, .jqx-widget-metrodark .jqx-grid-cell-sort-metrodark, .jqx-widget-metrodark .jqx-grid-cell-pinned-metrodark, .jqx-widget-metrodark .jqx-grid-cell-filter-metrodark, .jqx-grid-cell-sort-alt-metrodark, .jqx-grid-cell-filter-alt-metrodark, .jqx-grid-cell-pinned-metrodark, .jqx-grid-cell-alt-metrodark, .jqx-grid-cell-sort-metrodark{ background-color:#2a2e39; color: #fff;}
+.jqx-menu-vertical-metrodark{background: #2a2e39; border-color: #2a2e39;}
 .jqx-widget-metrodark .jqx-grid-cell-metrodark, .jqx-widget-metrodark .jqx-grid-column-header-metrodark, .jqx-widget-metrodark .jqx-grid-group-cell-metrodark { border-color: #35353A;}
 
 .jqx-widget-metrodark .jqx-grid-column-menubutton-metrodark, .jqx-widget-metrodark .jqx-grid-column-sortascbutton-metrodark, .jqx-widget-metrodark .jqx-grid-column-sortdescbutton-metrodark, .jqx-widget-metrodark .jqx-grid-column-filterbutton-metrodark {
     background-color: transparent;
     border-color: #35353A;
 }
-.jqx-window-header-metrodark, .jqx-input-button-header-metrodark, .jqx-calendar-title-header-metrodark, .jqx-grid-metrodark .jqx-widget-header-metrodark, .jqx-grid-header-metrodark, .jqx-grid-column-header-metrodark {font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; border-color: #35353A; color: #ffffff; background: #3E3E42;}
+.jqx-window-header-metrodark, .jqx-input-button-header-metrodark, .jqx-calendar-title-header-metrodark, .jqx-grid-metrodark .jqx-widget-header-metrodark, .jqx-grid-header-metrodark, .jqx-grid-column-header-metrodark {font-size: 12px; line-height: 17px; font-family: 'segoe ui', arial, sans-serif; border-color: #35353A; color: #ffffff; background: #2a2e39;}
 .jqx-grid-column-menubutton-metrodark {
     background-image: url('images/metro-icon-down-white.png');
  }
@@ -121,8 +121,8 @@
 .jqx-checkbox-check-checked-metrodark{background:transparent url(images/check_white.png) center center no-repeat}
 .jqx-checkbox-check-indeterminate-metrodark{background:transparent url(images/check_indeterminate_white.png) center center no-repeat}
 .jqx-checkbox-hover-metrodark, .jqx-radiobutton-hover-metrodark {
-    background-color: #3E3E42;
-    border-color: #3E3E42;
+    background-color: #2a2e39;
+    border-color: #2a2e39;
 }
 .jqx-radiobutton-check-checked-metrodark {
     background: #fff;
@@ -184,20 +184,20 @@
 }
 .jqx-scrollbar-button-state-normal-metrodark
 {
-    border: 1px solid #3E3E42; 
-    background: #3E3E42;
+    border: 1px solid #2a2e39; 
+    background: #2a2e39;
 }
 /*applied to the scrollbar buttons in hovered state.*/
 .jqx-scrollbar-button-state-hover-metrodark
 {
-    border: 1px solid #3E3E42;
-    background: #3E3E42;
+    border: 1px solid #2a2e39;
+    background: #2a2e39;
 }
 /*applied to the scrollbar buttons in pressed state.*/
 .jqx-scrollbar-button-state-pressed-metrodark
 {
-    border: 1px solid #3E3E42;
-    background: #3E3E42;
+    border: 1px solid #2a2e39;
+    background: #2a2e39;
 }
 
 /*icons*/

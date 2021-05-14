@@ -1,10 +1,10 @@
 .splitter > .gutter {
   border-color: #35353A;
-  background: #3E3E42;
+  background: #2a2e39;
 }
 .splitter > .gutter.active {
   border-color: #35353A;
-  background: #3E3E42;
+  background: #2a2e39;
 }
 .splitter>.gutter::before {
   border-color: #007ACC;
