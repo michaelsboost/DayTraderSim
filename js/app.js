@@ -32,6 +32,7 @@ cash.onclick = function() {
         return 'You need to write something!'
       } else {
         cash.textContent = '$' + parseFloat(value).toLocaleString() + '.00'
+        $('[data-output=orderhistory], [data-output=position]').html('')
       }
     }
   })
@@ -208,6 +209,8 @@ function buildPL() {
   }
 
   // active position
+  cash.disabled = true
+  cash.style.cursur = 'default'
   closedPrice = priceOrder.value
   $("[data-trade=symbol]").text($('#coin').text())
   $("[data-trade=price]").text(closedPrice)
@@ -236,6 +239,8 @@ function stopPL() {
   }
   clearTimeout(timer2)
   
+  cash.disabled = false
+  cash.style.cursur = 'pointer'
   gainorLoss = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes)).toFixed(2)
   $("[data-output=position]").prepend('<tr><td>'+ $("[data-trade=symbol]").text() +'</td><td>'+ $("[data-trade=price]").text() +'</td><td>0.00</td><td>'+ gainorLoss +'</td></tr>').show()
   $("[data-clone=position]").hide()
