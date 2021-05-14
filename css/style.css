@@ -135,7 +135,7 @@ table, tbody, tr, td {
   background: transparent;
   border: 0;
   outline: none;
-  color: #fff;
+  color: #fff!important;
 }
 
 /* order entry */
