@@ -70,7 +70,7 @@ buy.onclick = function() {
       balanceTxt = cash.textContent;
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
-      // active (short selling)
+      // closing active short selling position
       $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Buy</td></tr>')
       this.disabled = false
       sell.disabled = false
@@ -78,7 +78,7 @@ buy.onclick = function() {
       console.log("shorting false")
       
       // finally add to balance
-      gainorLoss = parseFloat(parseFloat(cashIn) - parseFloat(priceOrder.value)).toFixed(2)
+      gainorLoss = parseFloat(parseFloat(parseFloat(cashIn) - parseFloat(priceOrder.value)) * parseFloat($("#leverage option:selected").val())).toFixed(2)
       stopPL()
     }
   } else {
@@ -102,6 +102,7 @@ sell.onclick = function() {
       balanceTxt = cash.textContent;
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
+      // closing active long position
       $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
       buy.disabled = false
       this.disabled = false
@@ -109,7 +110,7 @@ sell.onclick = function() {
       console.log("shorting false")
       
       // finally add to balance
-      var gainorLoss = parseFloat(parseFloat(cashIn) + parseFloat(priceOrder.value)).toFixed(2)
+      gainorLoss = parseFloat(parseFloat(parseFloat(priceOrder.value) - parseFloat(cashIn)) * parseFloat($("#leverage option:selected").val())).toFixed(2)
       stopPL()
     } else {
       // grab current balance
@@ -203,6 +204,7 @@ function buildPL() {
     gainorLoss = parseFloat(parseFloat(priceOrder.value) - parseFloat(cashIn)).toFixed(2)
     gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val())).toFixed(2)
   }
+  console.log("gainorLoss: " + gainorLoss)
 
   // active position
   cash.disabled = true
@@ -220,28 +222,17 @@ function watchPL() {
 }
 function stopPL() {
   // finally add to balance  
-  if (shorting === true) {
-    // is this a profit or a loss
-    if (gainorLoss >= 0) {
-      console.log(parseFloat(parseFloat(gainorLoss) + parseFloat(currentBalance)).toFixed(2))
-    } else {
-      console.log(parseFloat(parseFloat(gainorLoss) - parseFloat(currentBalance)).toFixed(2))
-    }
-  } else {
-    // finally add to balance
-    priceTimes = Math.floor(parseFloat(currentBalance) / closedPrice)
-    closedPrice = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes)).toFixed(2)
-    finalPrice = parseFloat(parseFloat(currentBalance) + parseFloat(closedPrice)).toFixed(2)
-  }
+  balanceTxt = cash.textContent;
+  balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
+  finalPrice = parseFloat(parseFloat(balanceTxt) + parseFloat(gainorLoss)).toFixed(2)
+  balanceTxt = "$" + parseFloat(finalPrice).toLocaleString()
+  cash.textContent = balanceTxt;
   clearTimeout(timer2)
   
   cash.disabled = false
   cash.style.cursur = 'pointer'
-  gainorLoss = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes)).toFixed(2)
   $("[data-output=position]").prepend('<tr><td>'+ $("[data-trade=symbol]").text() +'</td><td>'+ $("[data-trade=price]").text() +'</td><td>0.00</td><td>'+ gainorLoss +'</td></tr>').show()
   $("[data-clone=position]").hide()
-  cash.textContent = "$" + parseFloat(finalPrice).toLocaleString()
-  balanceTxt = cash.textContent
   leverageElm.disabled = false
   
   $("[data-trade=symbol]").text(" ")
