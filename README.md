@@ -24,7 +24,6 @@ Crypto Paper Trader uses a small number of open source projects to work properly
 
 * [JQuery](https://jquery.com/) - duh
 * [Normalize](https://github.com/necolas/normalize.css) - CSS reset library
-* [Vue](https://vuejs.org/) - Required in the original [Pat Flew](https://codepen.io/pat-flew/pen/Vyvxrw) (Yes I forked his project)
 * [jqxSplitter](https://www.jqwidgets.com/jquery-widgets-demo/demos/jqxsplitter/index.htm#demos/jqxsplitter/defaultfunctionality.htm) - Resizable columns
 * [Interactive Chart](https://www.tradingview.com/symbols/LTCUSDT/?utm_source=crypto-paper-trader.michaelsboost.repl.co&utm_medium=widget&utm_campaign=chart&utm_term=BINANCE%3ALTCUSDT) - Provided by TradingView
 * [Binance API](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md) - Used to track the ticker price movement
