@@ -207,3 +207,6 @@ table, tbody, tr, td {
 .tr {
   text-align: right;
 }
+.noclick {
+  cursor: default!important;
+}

@@ -204,11 +204,13 @@ function buildPL() {
     gainorLoss = parseFloat(parseFloat(priceOrder.value) - parseFloat(cashIn)).toFixed(2)
     gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val())).toFixed(2)
   }
-  console.log("gainorLoss: " + gainorLoss)
 
   // active position
   cash.disabled = true
-  cash.style.cursur = 'default'
+  leverageElm.disabled = true
+  if (!$('#cash').hasClass('noclick')) {
+    $('#cash').addClass('noclick')
+  }
   closedPrice = priceOrder.value
   $("[data-trade=symbol]").text($('#coin').text())
   $("[data-trade=price]").text(closedPrice)
@@ -230,7 +232,7 @@ function stopPL() {
   clearTimeout(timer2)
   
   cash.disabled = false
-  cash.style.cursur = 'pointer'
+  $('#cash').removeClass('noclick')
   $("[data-output=position]").prepend('<tr><td>'+ $("[data-trade=symbol]").text() +'</td><td>'+ $("[data-trade=price]").text() +'</td><td>0.00</td><td>'+ gainorLoss +'</td></tr>').show()
   $("[data-clone=position]").hide()
   leverageElm.disabled = false
