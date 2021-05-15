@@ -47,6 +47,7 @@
                       <option value="1">none</option>
                       <option value="2">2x</option>
                       <option value="4">4x</option>
+                      <option value="5">5x</option>
                       <option value="6">6x</option>
                       <option value="8">8x</option>
                       <option value="10">10x</option>
@@ -121,7 +122,15 @@
 
               <div class="table">
                 <div class="cell">
-                  <div id="coin" class="krub">LTCUSDT</div>
+                  <select id="coin" class="krub">
+                    <option value="BTCUSDT">BTC/USDT</option>
+                    <option value="ETHUSDT">ETH/USDT</option>
+                    <option value="LTCUSDT" selected>LTC/USDT</option>
+                    <option value="DOGEUSDT">DOGE/USDT</option>
+                    <option value="XRPUSDT">XRP/USDT</option>
+                    <option value="ADAUSDT">ADA/USDT</option>
+                    <option value="BCHUSDT">BCH/USDT</option>
+                  </select>
                 </div>
                 <div class="cell">
                   <input id="priceorder" class="krub" type="number" placeholder="343.75" min="0" style="outline: none;">

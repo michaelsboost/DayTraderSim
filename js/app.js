@@ -13,8 +13,25 @@ var priceOrder  = document.getElementById("priceorder")
 var buyBtn      = document.getElementById("buy")
 var sellBtn     = document.getElementById("sell")
 var cash        = document.getElementById("cash")
+var coin        = document.getElementById("coin")
 var leverageElm = document.getElementById("leverage")
 var activeOrder = false
+
+// Is there localStorage?
+if (localStorage) {
+  if (localStorage.getItem("rememberLeverage")) {
+    leverageElm.value = localStorage.getItem("rememberLeverage")
+  }
+  if (localStorage.getItem("rememberBalance")) {
+    cash.textContent = localStorage.getItem("rememberBalance")
+  }
+  if (localStorage.getItem("orderHistory")) {
+    $('[data-output=orderhistory]').html(localStorage.getItem("orderHistory"))
+  }
+  if (localStorage.getItem("orderPositions")) {
+    $('[data-output=position]').html(localStorage.getItem("orderPositions")).show()
+  }
+}
 
 // balance button
 cash.onclick = function() {
@@ -28,7 +45,13 @@ cash.onclick = function() {
         return 'You need to write something!'
       } else {
         cash.textContent = '$' + parseFloat(value).toLocaleString() + '.00'
+        leverageElm.value = '1'
         $('[data-output=orderhistory], [data-output=position]').html('')
+        localStorage.clear()
+        // localStorage.removeItem("rememberLeverage")
+        // localStorage.removeItem("rememberBalance")
+        // localStorage.removeItem("orderHistory")
+        // localStorage.removeItem("orderPositions")
       }
     }
   })
@@ -63,7 +86,7 @@ buy.onclick = function() {
         watchPL()
       }
       
-      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Buy</td></tr>')
+      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin option:selected').val() +'</td><td>'+ priceOrder.value +'</td><td>Buy</td></tr>')
       this.disabled = true
     } else {
       // grab current balance
@@ -71,7 +94,7 @@ buy.onclick = function() {
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
       // closing active short selling position
-      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Buy</td></tr>')
+      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin option:selected').val() +'</td><td>'+ priceOrder.value +'</td><td>Buy</td></tr>')
       this.disabled = false
       sell.disabled = false
       shorting = false
@@ -103,7 +126,7 @@ sell.onclick = function() {
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
       // closing active long position
-      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
+      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin option:selected').val() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
       buy.disabled = false
       this.disabled = false
       shorting = false
@@ -129,7 +152,7 @@ sell.onclick = function() {
       cashIn = parseFloat(priceOrder.value).toFixed(2)
       currentBalance = parseFloat(balanceTxt).toFixed(2)
       
-      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin').text() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
+      $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin option:selected').val() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
       this.disabled = true
       watchPL()
       leverageElm.disabled = true
@@ -140,39 +163,65 @@ sell.onclick = function() {
   }
 }
 
-// ticker chart
-new TradingView.widget({
-  "width": "100%",
-  "height": window.innerHeight,
-  "symbol": "BINANCE:" + $('#coin').text(),
-  "interval": "1",
-  "timezone": "Etc/UTC",
-  "theme": "dark",
-  "style": "1",
-  "locale": "en",
-  "toolbar_bg": "#f1f3f6",
-  "enable_publishing": false,
-  "hide_side_toolbar": false,
-  "allow_symbol_change": false,
-  "hotlist": true,
-  "calendar": true,
-  "details": true,
-  "studies": [
-    "BB@tv-basicstudies",
-    "Volume@tv-basicstudies",
-    "VWAP@tv-basicstudies"
-  ],
-  "news": [
-    "headlines"
-  ],
-  "container_id": "tradingview_0b60e"
-})
-watchTicker()
+/*
+// clears hash
+window.location.href = window.location.toString().split(/\?|#/)[0];
+*/
+
+// detect window hash
+var hash = window.location.hash
+if (!hash) {
+  window.location.hash = 'LTCUSDT'
+  location.reload(true)
+} else {
+  hash = hash.substr(1, hash.length)
+  $('#coin option[value='+ hash +']').prop('selected', true)
+  
+  // ticker chart
+  new TradingView.widget({
+    "width": "100%",
+    "height": window.innerHeight,
+    "symbol": "BINANCE:" + $('#coin option:selected').val(),
+    "interval": "1",
+    "timezone": "Etc/UTC",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "toolbar_bg": "#f1f3f6",
+    "enable_publishing": false,
+    "hide_side_toolbar": false,
+    "allow_symbol_change": false,
+    "hotlist": true,
+    "calendar": true,
+    "details": true,
+    "studies": [
+      "BB@tv-basicstudies",
+      "Volume@tv-basicstudies",
+      "VWAP@tv-basicstudies"
+    ],
+    "news": [
+      "headlines"
+    ],
+    "container_id": "tradingview_0b60e"
+  })
+  watchTicker()
+}
+
+// add hash from change and reload
+$('#coin')[0].onchange = function() {
+  window.location.hash = this.value
+  location.reload(true)
+}
+
+// remember leverage
+leverageElm.onchange = function() {
+  localStorage.setItem("rememberLeverage", this.value)
+}
 
 // watch the ticker price
 function buildTicker() {
   var burl = 'https://api.binance.com/api/v3/ticker/price?symbol='
-  var symbol = $('#coin').text()
+  var symbol = $('#coin option:selected').val()
   var url = burl + symbol
   var ourRequest = new XMLHttpRequest()
 
@@ -206,13 +255,14 @@ function buildPL() {
   }
 
   // active position
-  cash.disabled = true
   leverageElm.disabled = true
+  cash.disabled = true
+  coin.disabled = true
   if (!$('#cash').hasClass('noclick')) {
     $('#cash').addClass('noclick')
   }
   closedPrice = priceOrder.value
-  $("[data-trade=symbol]").text($('#coin').text())
+  $("[data-trade=symbol]").text($('#coin option:selected').val())
   $("[data-trade=price]").text(closedPrice)
   $("[data-pl=open]").text(gainorLoss)
 }
@@ -229,12 +279,16 @@ function stopPL() {
   finalPrice = parseFloat(parseFloat(balanceTxt) + parseFloat(gainorLoss)).toFixed(2)
   balanceTxt = "$" + parseFloat(finalPrice).toLocaleString()
   cash.textContent = balanceTxt;
+  localStorage.setItem("rememberBalance", balanceTxt)
   clearTimeout(timer2)
   
   cash.disabled = false
+  coin.disabled = false
   $('#cash').removeClass('noclick')
   $("[data-output=position]").prepend('<tr><td>'+ $("[data-trade=symbol]").text() +'</td><td>'+ $("[data-trade=price]").text() +'</td><td>0.00</td><td>'+ gainorLoss +'</td></tr>').show()
   $("[data-clone=position]").hide()
+  localStorage.setItem("orderHistory", $('[data-output=orderhistory]').html())
+  localStorage.setItem("orderPositions", $('[data-output=position]').html())
   leverageElm.disabled = false
   
   $("[data-trade=symbol]").text(" ")
