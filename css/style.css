@@ -146,6 +146,23 @@ table, tbody, tr, td {
   right: 0;
   bottom: 0;
 }
+.orderentry svg {
+  width: 6vw;
+  max-width: 50px;
+  min-width: 20px;
+}
+.orderentry .github,
+.orderentry .donate {
+  position: absolute;
+  bottom: 0;
+  margin: 5px 15px;
+}
+.orderentry .github {
+  left: 0;
+}
+.orderentry .donate {
+  right: 0;
+}
 .orderentry button,
 .orderentry select {
   cursor: pointer;
