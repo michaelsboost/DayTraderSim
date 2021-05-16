@@ -1,5 +1,5 @@
 /*
-  Version: 0.0.1
+  Version: 0.0.2
   Crypto Paper Trader, copyright (c) by Michael Schwartz
   Distributed under the MIT license: https://github.com/michaelsboost/Crypto-Paper-Trader/blob/gh-pages/LICENSE
   This is Crypto Paper Trader (https://michaelsboost.github.io/Crypto-Paper-Trader), Day trade crypto with out risking any money!
