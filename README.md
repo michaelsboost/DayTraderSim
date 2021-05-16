@@ -36,7 +36,7 @@ Want to contribute? Great!
 
 You can submit a pull request or simply share the project :)
 
-*As of Monday, May 15th, 2021 Crypto Paper Trader is no longer an active project.
+*As of Monday, May 16th, 2021 Crypto Paper Trader is no longer an active project.
 All updates as of that date and on are solely contributor based implementations.*
 
 Of course, Crypto Paper Trader is free and open source, so you can always fork the project and have fun :)
