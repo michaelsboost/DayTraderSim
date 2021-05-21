@@ -17,6 +17,17 @@ License
 
 MIT 
 
+Hotkeys
+-------------
+
+***Mac Users***
+* Cmd+B to buy
+* Cmd+S to sell
+
+***Other Users***
+* Ctrl+B to buy
+* Ctrl+S to sell
+
 Tech
 -------------
 
@@ -36,7 +47,7 @@ Want to contribute? Great!
 
 You can submit a pull request or simply share the project :)
 
-*As of Monday, May 16th, 2021 Crypto Paper Trader is no longer an active project.
+*As of Monday, May 21th, 2021 Crypto Paper Trader is no longer an active project.
 All updates as of that date and on are solely contributor based implementations.*
 
 Of course, Crypto Paper Trader is free and open source, so you can always fork the project and have fun :)

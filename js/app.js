@@ -57,6 +57,41 @@ cash.onclick = function() {
   })
 }
 
+// Hotkey to buy
+shortcut.add("Ctrl+B", function() {
+  $("#buy").trigger("click");
+});
+
+// Hotkey to sell
+shortcut.add("Ctrl+S", function() {
+  $("#sell").trigger("click");
+});
+
+window.addEventListener("keydown", function(e) {
+  // Mac Hotkey to buy (Cmd+B)
+  if ( e.metaKey && e.keyCode == 66 ) {
+    $("#buy").trigger("click");
+  }
+  // Mac Hotkey to sell (Cmd+S)
+  if ( e.metaKey && e.keyCode == 83 ) {
+    $("#sell").trigger("click");
+  }
+  // Mac Hotkey to clear data (Cmd+N)
+  if ( e.metaKey && e.keyCode == 78 ) {
+    $("#cash").trigger("click");
+  }
+});
+
+if ( navigator.platform.indexOf('Mac') > -1 ) {
+  cash.setAttribute("title", "Cmd+N");
+  buy.setAttribute("title", "Cmd+B");
+  sell.setAttribute("title", "Cmd+S");
+} else {
+  cash.setAttribute("title", "");
+  buy.setAttribute("title", "Ctrl+B");
+  sell.setAttribute("title", "Ctrl+S");
+}
+
 // buy button
 buy.onclick = function() {
   now = new Date()
