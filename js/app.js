@@ -8,7 +8,7 @@
 // variables
 var timer, timer1, timer2, shorting;
 var now, month, currentDate, year, activeDate;
-var balanceTxt, cashIn, closedPrice, currentBalance, gainorLoss, priceTimes, finalPrice, leveraged;
+var balanceTxt, cashIn, closedPrice, lastPrice, currentBalance, gainorLoss, priceTimes, finalPrice, leveraged;
 var priceOrder  = document.getElementById("priceorder")
 var buyBtn      = document.getElementById("buy")
 var sellBtn     = document.getElementById("sell")
@@ -116,7 +116,7 @@ buy.onclick = function() {
         alert('insufficient funds')
         return false
       } else {
-        cashIn = parseFloat(priceOrder.value).toFixed(2)
+        cashIn = parseFloat(priceOrder.value)
         currentBalance = parseFloat(balanceTxt).toFixed(2);
         watchPL()
       }
@@ -136,7 +136,15 @@ buy.onclick = function() {
       console.log("shorting false")
       
       // finally add to balance
-      gainorLoss = parseFloat(parseFloat(parseFloat(cashIn) - parseFloat(priceOrder.value)) * parseFloat($("#leverage option:selected").val())).toFixed(2)
+      console.log("gainorLoss: " + gainorLoss)
+      // gainorLoss = parseFloat(parseFloat(parseFloat(cashIn) - parseFloat(priceOrder.value)) * parseFloat($("#leverage option:selected").val())).toFixed(2)
+
+      // how many times does the balance go into the cashIn value
+      priceTimes = parseFloat(balanceTxt / cashIn)
+      activePL = ""
+      activePL = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes))
+      gainorLoss = parseFloat(activePL).toFixed(2)
+
       stopPL()
     }
   } else {
@@ -168,7 +176,14 @@ sell.onclick = function() {
       console.log("shorting false")
       
       // finally add to balance
-      gainorLoss = parseFloat(parseFloat(parseFloat(priceOrder.value) - parseFloat(cashIn)) * parseFloat($("#leverage option:selected").val())).toFixed(2)
+      gainorLoss = parseFloat(parseFloat(parseFloat(priceOrder.value) - parseFloat(cashIn)) * parseFloat($("#leverage option:selected").val()))
+
+      // how many times does the balance go into the cashIn value
+      priceTimes = parseFloat(balanceTxt / cashIn)
+      activePL = ""
+      activePL = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes))
+      gainorLoss = parseFloat(activePL).toFixed(2)
+
       stopPL()
     } else {
       // grab current balance
@@ -184,7 +199,7 @@ sell.onclick = function() {
       // no active order (short sell)
       shorting = true
       console.log("shorting true")
-      cashIn = parseFloat(priceOrder.value).toFixed(2)
+      cashIn = parseFloat(priceOrder.value)
       currentBalance = parseFloat(balanceTxt).toFixed(2)
       
       $("[data-output=orderhistory]").prepend('<tr><td>'+ activeDate + now.toLocaleTimeString() +'</td><td>'+ $('#coin option:selected').val() +'</td><td>'+ priceOrder.value +'</td><td>Sell</td></tr>')
@@ -282,12 +297,18 @@ function stopTicker() {
 function buildPL() {
   // detect profit loss
   if (shorting === true) {
-    gainorLoss = parseFloat(parseFloat(cashIn) - parseFloat(priceOrder.value)).toFixed(2)
-    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val())).toFixed(2)
+    gainorLoss = parseFloat(parseFloat(cashIn) - parseFloat(priceOrder.value))
+    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val()))
   } else {
-    gainorLoss = parseFloat(parseFloat(priceOrder.value) - parseFloat(cashIn)).toFixed(2)
-    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val())).toFixed(2)
+    gainorLoss = parseFloat(parseFloat(priceOrder.value) - parseFloat(cashIn))
+    gainorLoss = parseFloat(gainorLoss * parseFloat($("#leverage option:selected").val()))
   }
+  
+  // how many times does the balance go into the cashIn value
+  priceTimes = parseFloat(balanceTxt / cashIn)
+  activePL = ""
+  activePL = parseFloat(parseFloat(gainorLoss) * parseFloat(priceTimes))
+  var gainrLoss = parseFloat(activePL).toFixed(2)
 
   // active position
   leverageElm.disabled = true
@@ -297,9 +318,10 @@ function buildPL() {
     $('#cash').addClass('noclick')
   }
   closedPrice = priceOrder.value
+  closedPrice = priceOrder.value
   $("[data-trade=symbol]").text($('#coin option:selected').val())
   $("[data-trade=price]").text(closedPrice)
-  $("[data-pl=open]").text(gainorLoss)
+  $("[data-pl=open]").text(gainrLoss)
 }
 function watchPL() {
   $("[data-clone=position]").show()
