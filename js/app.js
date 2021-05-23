@@ -8,14 +8,13 @@
 // variables
 var timer, timer1, timer2, shorting;
 var now, month, currentDate, year, activeDate;
-var balanceTxt, cashIn, closedPrice, lastPrice, currentBalance, gainorLoss, priceTimes, finalPrice, leveraged;
+var balanceTxt, cashIn, closedPrice, currentBalance, gainorLoss, priceTimes, finalPrice;
 var priceOrder  = document.getElementById("priceorder")
 var buyBtn      = document.getElementById("buy")
 var sellBtn     = document.getElementById("sell")
 var cash        = document.getElementById("cash")
 var coin        = document.getElementById("coin")
 var leverageElm = document.getElementById("leverage")
-var activeOrder = false
 
 // Is there localStorage?
 if (localStorage) {
@@ -35,61 +34,69 @@ if (localStorage) {
 
 // balance button
 cash.onclick = function() {
+  // balanceTxt = cash.textContent
+  // balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
+
   Swal.fire({
     title: "Warning! Clears your history!!",
     input: 'number',
-    inputValue: '1000.00',
+    inputValue: '',
     showCancelButton: true,
     inputValidator: (value) => {
       if (!value) {
         return 'You need to write something!'
-      } else {
-        cash.textContent = '$' + parseFloat(value).toLocaleString() + '.00'
-        leverageElm.value = '1'
-        $('[data-output=orderhistory], [data-output=position]').html('')
-        localStorage.clear()
-        // localStorage.removeItem("rememberLeverage")
-        // localStorage.removeItem("rememberBalance")
-        // localStorage.removeItem("orderHistory")
-        // localStorage.removeItem("orderPositions")
       }
+    }
+  }).then(function(result) {
+    if (result.value) {
+      localStorage.clear()
+      var newBal = '$' + parseFloat(result.value).toLocaleString() + '.00'
+      leverageElm.value = '1'
+      $('[data-output=orderhistory], [data-output=position]').html('')
+      cash.textContent = ''
+      cash.textContent = newBal
+      localStorage.setItem("rememberBalance", cash.textContent)
+      // localStorage.removeItem("rememberLeverage")
+      // localStorage.removeItem("rememberBalance")
+      // localStorage.removeItem("orderHistory")
+      // localStorage.removeItem("orderPositions")
     }
   })
 }
 
 // Hotkey to buy
 shortcut.add("Ctrl+B", function() {
-  $("#buy").trigger("click");
-});
+  $("#buy").trigger("click")
+})
 
 // Hotkey to sell
 shortcut.add("Ctrl+S", function() {
-  $("#sell").trigger("click");
-});
+  $("#sell").trigger("click")
+})
 
 window.addEventListener("keydown", function(e) {
   // Mac Hotkey to buy (Cmd+B)
   if ( e.metaKey && e.keyCode == 66 ) {
-    $("#buy").trigger("click");
+    $("#buy").trigger("click")
   }
   // Mac Hotkey to sell (Cmd+S)
   if ( e.metaKey && e.keyCode == 83 ) {
-    $("#sell").trigger("click");
+    $("#sell").trigger("click")
   }
   // Mac Hotkey to clear data (Cmd+N)
   if ( e.metaKey && e.keyCode == 78 ) {
-    $("#cash").trigger("click");
+    $("#cash").trigger("click")
   }
-});
+})
 
 if ( navigator.platform.indexOf('Mac') > -1 ) {
-  cash.setAttribute("title", "Cmd+N");
-  buy.setAttribute("title", "Cmd+B");
-  sell.setAttribute("title", "Cmd+S");
+  cash.setAttribute("title", "Cmd+N")
+  buy.setAttribute("title", "Cmd+B")
+  sell.setAttribute("title", "Cmd+S")
 } else {
-  cash.setAttribute("title", "");
-  buy.setAttribute("title", "Ctrl+B");
-  sell.setAttribute("title", "Ctrl+S");
+  cash.setAttribute("title", "")
+  buy.setAttribute("title", "Ctrl+B")
+  sell.setAttribute("title", "Ctrl+S")
 }
 
 // buy button
@@ -108,7 +115,7 @@ buy.onclick = function() {
       console.log("shorting false")
   
       // grab current balance
-      balanceTxt = cash.textContent;
+      balanceTxt = cash.textContent
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
       // does the user have enough funds to execute this order?
@@ -117,7 +124,7 @@ buy.onclick = function() {
         return false
       } else {
         cashIn = parseFloat(priceOrder.value)
-        currentBalance = parseFloat(balanceTxt).toFixed(2);
+        currentBalance = parseFloat(balanceTxt).toFixed(2)
         watchPL()
       }
       
@@ -125,7 +132,7 @@ buy.onclick = function() {
       this.disabled = true
     } else {
       // grab current balance
-      balanceTxt = cash.textContent;
+      balanceTxt = cash.textContent
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
       // closing active short selling position
@@ -165,7 +172,7 @@ sell.onclick = function() {
     // yes active orders
     if (buy.disabled === true) {
       // grab current balance
-      balanceTxt = cash.textContent;
+      balanceTxt = cash.textContent
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
       // closing active long position
@@ -187,13 +194,13 @@ sell.onclick = function() {
       stopPL()
     } else {
       // grab current balance
-      balanceTxt = cash.textContent;
+      balanceTxt = cash.textContent
       balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
       
       // does the user have enough funds to execute this order?
       if (parseFloat(priceOrder.value) > parseFloat(balanceTxt)) {
         alert('insufficient funds')
-        return false;
+        return false
       }
       
       // no active order (short sell)
@@ -331,11 +338,11 @@ function watchPL() {
 }
 function stopPL() {
   // finally add to balance  
-  balanceTxt = cash.textContent;
+  balanceTxt = cash.textContent
   balanceTxt = balanceTxt.substr(1, balanceTxt.length).replace(/,/g, '')
   finalPrice = parseFloat(parseFloat(balanceTxt) + parseFloat(gainorLoss)).toFixed(2)
   balanceTxt = "$" + parseFloat(finalPrice).toLocaleString()
-  cash.textContent = balanceTxt;
+  cash.textContent = balanceTxt
   localStorage.setItem("rememberBalance", balanceTxt)
   clearTimeout(timer2)
   
