@@ -231,9 +231,7 @@ if (!hash) {
     "calendar": true,
     "details": true,
     "studies": [
-      "BB@tv-basicstudies",
-      "Volume@tv-basicstudies",
-      "VWAP@tv-basicstudies"
+      "BB@tv-basicstudies"
     ],
     "news": [
       "headlines"
