@@ -1,5 +1,5 @@
 /*
-  Version: 0.0.2
+  Version: 0.0.3
   Crypto Paper Trader, copyright (c) by Michael Schwartz
   Distributed under the MIT license: https://github.com/michaelsboost/Crypto-Paper-Trader/blob/gh-pages/LICENSE
   This is Crypto Paper Trader (https://michaelsboost.github.io/Crypto-Paper-Trader), Day trade crypto with out risking any money!
@@ -207,7 +207,7 @@ window.location.href = window.location.toString().split(/\?|#/)[0];
 // detect window hash
 var hash = window.location.hash
 if (!hash) {
-  window.location.hash = 'LTCUSDT'
+  window.location.hash = $('#coin option:selected').val();
   location.reload(true)
 } else {
   hash = hash.substr(1, hash.length)
@@ -219,7 +219,7 @@ if (!hash) {
     "height": window.innerHeight,
     "symbol": "BINANCE:" + $('#coin option:selected').val(),
     "interval": "1",
-    "timezone": "Etc/UTC",
+    "timezone": "America/Chicago",
     "theme": "dark",
     "style": "1",
     "locale": "en",
@@ -231,7 +231,9 @@ if (!hash) {
     "calendar": true,
     "details": true,
     "studies": [
-      "BB@tv-basicstudies"
+      // "BB@tv-basicstudies",
+      // "MAExp@tv-basicstudies",
+      "VWAP@tv-basicstudies"
     ],
     "news": [
       "headlines"

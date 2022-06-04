@@ -10,7 +10,7 @@ Try it now! [https://michaelsboost.com/Crypto-Paper-Trader/](https://michaelsboo
 Version
 -------------
 
-0.0.2
+0.0.3
 
 License
 -------------
