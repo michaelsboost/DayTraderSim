@@ -3,6 +3,8 @@ Crypto Paper Trader
 
 Day trade crypto with out risking any money! 
 
+Test your trading methodology with the Crypto Paper Trader Day Trader Simulator to see if your win percentages average out over a series of trades this way you'll know if you'll be a consistent profitable trader.
+
 Try it now! [https://michaelsboost.com/Crypto-Paper-Trader/](https://michaelsboost.github.io/Crypto-Paper-Trader/)
 
 ![](https://raw.githubusercontent.com/michaelsboost/Crypto-Paper-Trader/gh-pages/screenshot.png)
@@ -10,7 +12,7 @@ Try it now! [https://michaelsboost.com/Crypto-Paper-Trader/](https://michaelsboo
 Version
 -------------
 
-0.0.3
+0.0.4
 
 License
 -------------
@@ -42,7 +44,7 @@ Want to contribute? Great!
 
 You can submit a pull request or simply share the project :)
 
-*As of Monday, June 1st, 2021 Crypto Paper Trader is no longer an active project.
+*As of Monday, June 20st, 2022 Crypto Paper Trader is no longer an active project.
 All updates as of that date and on are solely contributor based implementations.*
 
 Of course, Crypto Paper Trader is free and open source, so you can always fork the project and have fun :)

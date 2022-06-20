@@ -1,5 +1,5 @@
 <!-- 
-  Version: 0.0.3
+  Version: 0.0.4
   Crypto Paper Trader, copyright (c) by Michael Schwartz
   Distributed under the MIT license: https://github.com/michaelsboost/Crypto-Paper-Trader/blob/gh-pages/LICENSE
   This is Crypto Paper Trader (https://michaelsboost.github.io/Crypto-Paper-Trader), Day trade crypto with out risking any money!
@@ -11,7 +11,7 @@
     <title>Crypto Paper Trader</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0">
-    <meta name="description" content="Day trade crypto with out risking any money!">
+    <meta name="description" content="Day trade crypto with out risking any money! Test your trading methodology with the Crypto Paper Trader Day Trader Simulator to see if your win percentages average out over a series of trades this way you'll know if you'll be a consistent profitable trader.">
     <meta name="author" content="Michael Schwartz">
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <link rel="apple-touch-icon" href="logo.png">
@@ -85,7 +85,10 @@
           </div>
           <div>
             <div class="fill-container">
-              <h3>Positions</h3>
+              <div class="fill">
+                <h3 class="ib">Positions</h3>
+                <h3 id="calcperc" class="ib fr" style="display: none;">100% &nbsp;</h3>
+              </div>
               
               <table>
                 <tbody data-column="position">

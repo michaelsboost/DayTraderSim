@@ -1,12 +1,12 @@
 /*
-  Version: 0.0.3
+  Version: 0.0.4
   Crypto Paper Trader, copyright (c) by Michael Schwartz
   Distributed under the MIT license: https://github.com/michaelsboost/Crypto-Paper-Trader/blob/gh-pages/LICENSE
   This is Crypto Paper Trader (https://michaelsboost.github.io/Crypto-Paper-Trader), Day trade crypto with out risking any money!
 */
 
 // variables
-var timer, timer1, timer2, shorting;
+var timer, timer1, timer2, shorting, trades;
 var now, month, currentDate, year, activeDate;
 var balanceTxt, cashIn, closedPrice, currentBalance, gainorLoss, priceTimes, finalPrice;
 var priceOrder  = document.getElementById("priceorder")
@@ -15,6 +15,7 @@ var sellBtn     = document.getElementById("sell")
 var cash        = document.getElementById("cash")
 var coin        = document.getElementById("coin")
 var leverageElm = document.getElementById("leverage")
+var calcperc    = document.getElementById("calcperc")
 
 // Is there localStorage?
 if (localStorage) {
@@ -29,6 +30,9 @@ if (localStorage) {
   }
   if (localStorage.getItem("orderPositions")) {
     $('[data-output=position]').html(localStorage.getItem("orderPositions")).show()
+  }
+  if (localStorage.getItem("rememberPerc")) {
+      calcperc.innerHTML = localStorage.getItem("rememberPerc");
   }
 }
 
@@ -56,6 +60,8 @@ cash.onclick = function() {
       cash.textContent = ''
       cash.textContent = newBal
       localStorage.setItem("rememberBalance", cash.textContent)
+      calcperc.innerHTML = '100% &nbsp;';
+      calcperc.style.display = 'none';
       // localStorage.removeItem("rememberLeverage")
       // localStorage.removeItem("rememberBalance")
       // localStorage.removeItem("orderHistory")
@@ -132,6 +138,7 @@ buy.onclick = function() {
       gainorLoss = parseFloat(activePL).toFixed(2)
 
       stopPL()
+      WinLossPerc()
     }
   } else {
     this.disabled = false
@@ -171,6 +178,7 @@ sell.onclick = function() {
       gainorLoss = parseFloat(activePL).toFixed(2)
 
       stopPL()
+      WinLossPerc()
     } else {
       // grab current balance
       balanceTxt = cash.textContent
@@ -339,4 +347,49 @@ function stopPL() {
   $("[data-pl=open]").text(" ")
   $("[data-pl=closed]").text(" ")
   return false
+}
+
+// calculate win/loss percentage
+function WinLossPerc() {
+  var trades      = [];
+  var tradeWins   = [];
+  var tradeLosses = [];
+  
+  for (i = 0; i < $('[data-output=position] td:last-child').length; i++) {
+    trades.push($('[data-output=position] td:last-child')[i].textContent);
+  }
+  
+  for (i = 0; i < trades.length; i++) {
+    if (Math.sign(trades[i]) === 1) {
+      tradeWins.push(trades[i])
+    }
+    if (Math.sign(trades[i]) === -1) {
+      tradeLosses.push(trades[i])
+    }
+  }
+
+  // win percentage
+  calcperc.innerHTML = parseFloat(parseFloat(parseFloat(tradeWins.length) / parseFloat(trades.length)) * 100).toFixed(0) + '% &nbsp;'
+  localStorage.setItem("rememberPerc", calcperc.innerHTML);
+  
+  // loss percentage
+  // calcperc.textContent = parseFloat(parseFloat(parseFloat(tradeLosses.length) / parseFloat(trades.length)) * 100).toFixed(0)
+
+  // if balance is greator than 50% show green
+  if (parseFloat(parseFloat(parseFloat(tradeWins.length) / parseFloat(trades.length)) * 100).toFixed(0) > 50) {
+    calcperc.style.color = '#26a69a';
+  }
+
+  // if balance is less than 50% show red
+  if (parseFloat(parseFloat(parseFloat(tradeWins.length) / parseFloat(trades.length)) * 100).toFixed(0) < 50) {
+    calcperc.style.color = '#ef5350';
+  }
+
+  // if balance is equal to 50% show white
+  if (parseFloat(parseFloat(parseFloat(tradeWins.length) / parseFloat(trades.length)) * 100).toFixed(0) === 50) {
+    calcperc.style.color = '#fff';
+  }
+
+  // show percentage
+  calcperc.style.display = 'inline-block';
 }
