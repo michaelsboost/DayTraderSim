@@ -33,6 +33,22 @@ if (localStorage) {
   }
   if (localStorage.getItem("rememberPerc")) {
       calcperc.innerHTML = localStorage.getItem("rememberPerc");
+      calcperc.style.display = 'inline-block';
+
+    // if balance is greator than 50% show green
+    if (parseFloat(localStorage.getItem("rememberPerc")).toFixed(0) > 50) {
+      calcperc.style.color = '#26a69a';
+    }
+  
+    // if balance is less than 50% show red
+    if (parseFloat(localStorage.getItem("rememberPerc")).toFixed(0) < 50) {
+      calcperc.style.color = '#ef5350';
+    }
+  
+    // if balance is equal to 50% show white
+    if (parseFloat(localStorage.getItem("rememberPerc")).toFixed(0) === 50) {
+      calcperc.style.color = '#fff';
+    }
   }
 }
 
