@@ -1,10 +1,3 @@
-/*
-  Version: 0.0.4
-  Crypto Paper Trader, copyright (c) by Michael Schwartz
-  Distributed under the MIT license: https://github.com/michaelsboost/Crypto-Paper-Trader/blob/gh-pages/LICENSE
-  This is Crypto Paper Trader (https://michaelsboost.github.io/Crypto-Paper-Trader), Day trade crypto with out risking any money!
-*/
-
 // variables
 var timer, timer1, timer2, shorting, trades;
 var now, month, currentDate, year, activeDate;
