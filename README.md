@@ -1,13 +1,13 @@
-Crypto Paper Trader
+Day Trader Simulator
 ===================
 
 Day trade crypto with out risking any money! 
 
 Test your trading methodology with the Crypto Paper Trader Day Trader Simulator to see if your win percentages average out over a series of trades this way you'll know if you'll be a consistent profitable trader.
 
-Try it now! [https://michaelsboost.com/Crypto-Paper-Trader/](https://michaelsboost.github.io/Crypto-Paper-Trader/)
+Try it now! [https://michaelsboost.com/DayTraderSim/](https://michaelsboost.github.io/DayTraderSim/)
 
-![](https://raw.githubusercontent.com/michaelsboost/Crypto-Paper-Trader/gh-pages/screenshot.png)
+![](https://raw.githubusercontent.com/michaelsboost/DayTraderSim/gh-pages/screenshot.png)
 
 Version
 -------------
@@ -28,7 +28,7 @@ Hotkeys
 Tech
 -------------
 
-Crypto Paper Trader uses a small number of open source projects to work properly:
+Day Trader Simulator uses a small number of open source projects to work properly:
 
 * [JQuery](https://jquery.com/) - duh
 * [Normalize](https://github.com/necolas/normalize.css) - CSS reset library
@@ -44,14 +44,14 @@ Want to contribute? Great!
 
 You can submit a pull request or simply share the project :)
 
-*As of Monday, June 20st, 2022 Crypto Paper Trader is no longer an active project.
+*As of Monday, June 20st, 2022 Day Trader Simulator is no longer an active project.
 All updates as of that date and on are solely contributor based implementations.*
 
-Of course, Crypto Paper Trader is free and open source, so you can always fork the project and have fun :)
+Of course, Day Trader Simulator is free and open source, so you can always fork the project and have fun :)
 
 [![ko-fi](https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0)](https://ko-fi.com/michaelsboost)
 
-If Crypto Paper Trader was at all helpful for you. You can show your appreciation a few ways...
+If Day Trader Simulator was at all helpful for you. You can show your appreciation a few ways...
 
 1) Check out my Graphic Design Course: https://michaelsboost.com/graphicdesign  
 2) Registering on my store as a customer: https://michaelsboost.com/store  
